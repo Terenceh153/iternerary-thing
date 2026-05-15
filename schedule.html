@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Schedule — Spokane Orchestra Trip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208;
+      --paper: #f5f0e8;
+      --accent: #b84c1e;
+      --muted: #7a6e5f;
+      --rule: #c8bfad;
+      --day-bg: #ede8de;
+    }
+
+    html.dark-mode {
+      --ink: #f5f0e8;
+      --paper: #1a1208;
+      --accent: #ff8c42;
+      --muted: #a89d8e;
+      --rule: #3d382f;
+      --day-bg: #2a251c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 48px 24px 80px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── Theme Toggle ── */
+    .theme-toggle {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: var(--day-bg);
+      border: 2px solid var(--ink);
+      padding: 8px 12px;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent);
+      color: var(--paper);
+      border-color: var(--accent);
+    }
+
+    /* ── Back Link ── */
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 32px;
+      letter-spacing: 0.08em;
+      transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: var(--ink);
+    }
+
+    /* ── Header ── */
+    header {
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      transition: border-color 0.3s ease;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
+
+    .meta {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      transition: color 0.3s ease;
+    }
+
+    /* ── Day blocks ── */
+    .day {
+      margin-bottom: 48px;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ink);
+      transition: border-color 0.3s ease;
+    }
+
+    .day-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .day-date {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+
+    /* ── Event rows ── */
+    .event {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+      transition: border-color 0.3s ease;
+    }
+
+    .event:last-child {
+      border-bottom: none;
+    }
+
+    .time {
+      font-weight: 500;
+      color: var(--accent);
+      font-size: 11.5px;
+      padding-top: 1px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      transition: color 0.3s ease;
+    }
+
+    .desc {
+      font-size: 13px;
+      color: var(--ink);
+      transition: color 0.3s ease;
+    }
+
+    .desc strong {
+      font-weight: 500;
+    }
+
+    .desc .sub {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      transition: color 0.3s ease;
+    }
+
+    /* ── Notes callout ── */
+    .note {
+      background: var(--day-bg);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 6px 0 6px 110px;
+      font-size: 11.5px;
+      color: var(--muted);
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* ── Footer rule ── */
+    footer {
+      margin-top: 64px;
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    @media print {
+      body { padding: 24px; background: white; }
+      .note { background: #f0f0f0; }
+      .theme-toggle { display: none; }
+      .back-link { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .theme-toggle {
+        position: static;
+        display: inline-block;
+        margin-bottom: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <button class="theme-toggle" id="theme-toggle">☀️ Light</button>
+  <a href="index.html" class="back-link">← Back to Live Status</a>
+
+  <header>
+    <div class="eyebrow">Bellevue School District · Odle MS Advanced Orchestra</div>
+    <h1>Full <em>Schedule</em></h1>
+    <div class="meta">
+      <span>May 15 – 17, 2026</span>
+      <span>Departure: Odle MS · 7:30 AM</span>
+      <span>Return: Odle MS · ~5:00 PM Sun</span>
+    </div>
+  </header>
+
+  <!-- ── FRIDAY ── -->
+  <div class="day">
+    <div class="day-header">
+      <span class="day-label">Friday</span>
+      <span class="day-date">May 15</span>
+    </div>
+
+    <div class="event">
+      <span class="time">6:45 AM</span>
+      <div class="desc">
+        <strong>Students Arrive at Odle</strong>
+        <span class="sub">Dressy casual attire required</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">7:00 AM</span>
+      <div class="desc"><strong>Load Buses</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">7:30 AM</span>
+      <div class="desc"><strong>Depart Odle</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">11:00 AM</span>
+      <div class="desc">
+        <strong>Rest Stop</strong>
+        <span class="sub">Schrag Rest Area WB I-90 · Ritzville, WA 99169</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">1:00 PM</span>
+      <div class="desc">
+        <strong>Arrive at Whitworth University</strong>
+        <span class="sub">Lunch provided</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">2:30 – 4:30 PM</span>
+      <div class="desc"><strong>Clinic at University</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">5:20 PM</span>
+      <div class="desc">
+        <strong>Dinner</strong>
+        <span class="sub">Golden Corral</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">7:30 PM</span>
+      <div class="desc">
+        <strong>Ghibli Concert</strong>
+        <span class="sub">Spokane Symphony</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">9:45 PM</span>
+      <div class="desc">
+        <strong>Arrive at Hotel</strong>
+        <span class="sub">801 N Division St, Spokane, WA 99202</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">10:00 PM</span>
+      <div class="desc"><strong>Room Check</strong></div>
+    </div>
+  </div>
+
+  <!-- ── SATURDAY ── -->
+  <div class="day">
+    <div class="day-header">
+      <span class="day-label">Saturday</span>
+      <span class="day-date">May 16</span>
+    </div>
+
+    <div class="event">
+      <span class="time">8:00 AM</span>
+      <div class="desc"><strong>Hotel Breakfast</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">8:50 AM</span>
+      <div class="desc"><strong>Load Buses</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">10:00 AM</span>
+      <div class="desc">
+        <strong>Arrive at Performance Space</strong>
+        <span class="sub">Coeur d'Alene Senior High School · 5530 N Fourth St, Coeur d'Alene, ID 83815</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">10:30 AM</span>
+      <div class="desc">
+        <strong>Watch: Vancouver School of Arts and Academics</strong>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">12:10 PM</span>
+      <div class="desc"><strong>Phil Performs 🎻</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">1:00 PM</span>
+      <div class="desc">
+        <strong>Depart for Lunch</strong>
+        <span class="sub">Subway · lunch on bus</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">2:00 PM</span>
+      <div class="desc"><strong>Arrive at Silverwood</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">4:15 PM</span>
+      <div class="desc">
+        <strong>Dinner at Silverwood</strong>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">5:00 PM</span>
+      <div class="desc"><strong>Festival Award Ceremony</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">6:00 PM</span>
+      <div class="desc"><strong>Depart Silverwood</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">7:00 PM</span>
+      <div class="desc">
+        <strong>Arrive at Hotel</strong>
+        <span class="sub">801 N Division St, Spokane, WA 99202</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">8:00 PM</span>
+      <div class="desc"><strong>Late Night Pizza</strong></div>
+    </div>
+  </div>
+
+  <!-- ── SUNDAY ── -->
+  <div class="day">
+    <div class="day-header">
+      <span class="day-label">Sunday</span>
+      <span class="day-date">May 17</span>
+    </div>
+
+    <div class="event">
+      <span class="time">8:00 AM</span>
+      <div class="desc"><strong>Hotel Breakfast</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">8:45 AM</span>
+      <div class="desc"><strong>Bring Down Luggage · Final Room Check</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">9:00 AM</span>
+      <div class="desc"><strong>Depart for Leavenworth</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">12:30 PM</span>
+      <div class="desc">
+        <strong>Arrive in Leavenworth</strong>
+        <span class="sub">Students purchase lunch · bring $20+ or debit card</span>
+      </div>
+    </div>
+    <div class="event">
+      <span class="time">2:00 PM</span>
+      <div class="desc"><strong>Meet at Chaperone Designated Spot</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">2:15 PM</span>
+      <div class="desc"><strong>Depart for Odle</strong></div>
+    </div>
+    <div class="event">
+      <span class="time">4:30 – 5:00 PM</span>
+      <div class="desc">
+        <strong>Arrive at Odle</strong>
+        <span class="sub">ETA communicated to families via TalkingPoints</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Odle MS Advanced Orchestra · Contact Mrs. Hollyday · All students depart & return together — no mid-trip pickups
+  </footer>
+
+</div>
+<script>
+  // Theme toggle setup
+  const themeToggle = document.getElementById('theme-toggle');
+  const htmlElement = document.documentElement;
+
+  // Set default to dark mode
+  if (!localStorage.getItem('theme')) {
+    localStorage.setItem('theme', 'dark');
+  }
+
+  const currentTheme = localStorage.getItem('theme');
+  if (currentTheme === 'dark') {
+    htmlElement.classList.add('dark-mode');
+    themeToggle.textContent = '🌙 Dark';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    htmlElement.classList.toggle('dark-mode');
+    const theme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    themeToggle.textContent = theme === 'dark' ? '🌙 Dark' : '☀️ Light';
+  });
+</script>
+</body>
+</html>
