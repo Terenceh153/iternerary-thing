@@ -72,7 +72,7 @@
       border-top: 3px solid var(--ink);
       border-bottom: 1px solid var(--rule);
       padding: 32px 0 24px;
-      margin-bottom: 48px;
+      margin-bottom: 32px;
       transition: border-color 0.3s ease;
     }
 
@@ -109,6 +109,126 @@
       display: flex;
       gap: 24px;
       flex-wrap: wrap;
+      transition: color 0.3s ease;
+    }
+
+    /* ── Tab Navigation ── */
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: var(--day-bg);
+      border: 2px solid var(--ink);
+      padding: 8px 16px;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      border-radius: 20px;
+    }
+
+    .tab-btn:hover {
+      background: var(--accent);
+      color: var(--paper);
+      border-color: var(--accent);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: var(--paper);
+      border-color: var(--accent);
+    }
+
+    /* ── Tab Content ── */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* ── Now / Next tracker ── */
+    .tracker {
+      background: var(--day-bg);
+      border: 2px solid var(--ink);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .tracker-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .tracker-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+
+    .tracker-block {
+      border-left: 3px solid var(--rule);
+      padding-left: 12px;
+      transition: border-color 0.3s ease;
+    }
+
+    .tracker-block.current {
+      border-left-color: var(--accent);
+    }
+
+    .tracker-tag {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .tracker-block.current .tracker-tag {
+      color: var(--accent);
+    }
+
+    .tracker-event-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .tracker-event-time {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+      transition: color 0.3s ease;
+    }
+
+    .tracker-clock {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 14px;
+      letter-spacing: 0.06em;
+      transition: color 0.3s ease;
+    }
+
+    .tracker-clock span {
+      color: var(--ink);
+      font-weight: 500;
       transition: color 0.3s ease;
     }
 
@@ -184,99 +304,6 @@
       transition: color 0.3s ease;
     }
 
-    /* ── Now / Next tracker ── */
-    .tracker {
-      background: var(--day-bg);
-      border: 2px solid var(--ink);
-      padding: 20px 24px;
-      margin-bottom: 48px;
-      transition: background 0.3s ease, border-color 0.3s ease;
-      border-radius: 8px;
-    }
-
-    .tracker-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
-      transition: color 0.3s ease;
-    }
-
-    .tracker-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 24px;
-    }
-
-    .tracker-block {
-      border-left: 3px solid var(--rule);
-      padding-left: 12px;
-      transition: border-color 0.3s ease;
-    }
-
-    .tracker-block.current {
-      border-left-color: var(--accent);
-    }
-
-    .tracker-tag {
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-      transition: color 0.3s ease;
-    }
-
-    .tracker-block.current .tracker-tag {
-      color: var(--accent);
-    }
-
-    .tracker-event-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .tracker-event-time {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 3px;
-      transition: color 0.3s ease;
-    }
-
-    .tracker-clock {
-      font-size: 10px;
-      color: var(--muted);
-      margin-top: 14px;
-      letter-spacing: 0.06em;
-      transition: color 0.3s ease;
-    }
-
-    .tracker-clock span {
-      color: var(--ink);
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .tracker-none {
-      font-size: 12px;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    /* ── Notes callout ── */
-    .note {
-      background: var(--day-bg);
-      border-left: 3px solid var(--accent);
-      padding: 12px 16px;
-      margin: 6px 0 6px 110px;
-      font-size: 11.5px;
-      color: var(--muted);
-      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-    }
-
     /* ── Footer rule ── */
     footer {
       margin-top: 64px;
@@ -291,8 +318,8 @@
 
     @media print {
       body { padding: 24px; background: white; }
-      .note { background: #f0f0f0; }
       .theme-toggle { display: none; }
+      .tab-nav { display: none; }
     }
 
     @media (max-width: 600px) {
@@ -300,6 +327,13 @@
         position: static;
         display: inline-block;
         margin-bottom: 24px;
+      }
+      .tab-nav {
+        gap: 6px;
+      }
+      .tab-btn {
+        padding: 6px 12px;
+        font-size: 10px;
       }
     }
   </style>
@@ -319,200 +353,216 @@
     </div>
   </header>
 
-  <!-- ── NOW / NEXT ── -->
-  <div class="tracker" id="tracker">
-    <div class="tracker-label">Live Status</div>
-    <div class="tracker-grid" id="tracker-grid">
-      <div class="tracker-block current">
-        <div class="tracker-tag">Now</div>
-        <div class="tracker-event-name" id="now-name">—</div>
-        <div class="tracker-event-time" id="now-time"></div>
-      </div>
-      <div class="tracker-block">
-        <div class="tracker-tag">Up Next</div>
-        <div class="tracker-event-name" id="next-name">—</div>
-        <div class="tracker-event-time" id="next-time"></div>
-      </div>
-    </div>
-    <div class="tracker-clock">Current time: <span id="live-clock"></span></div>
+  <!-- ── Tab Navigation ─��� -->
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="live">Live Status</button>
+    <button class="tab-btn" data-tab="friday">Friday</button>
+    <button class="tab-btn" data-tab="saturday">Saturday</button>
+    <button class="tab-btn" data-tab="sunday">Sunday</button>
   </div>
 
-  <!-- ── FRIDAY ── -->
-  <div class="day">
-    <div class="day-header">
-      <span class="day-label">Friday</span>
-      <span class="day-date">May 15</span>
-    </div>
-
-    <div class="event">
-      <span class="time">6:45 AM</span>
-      <div class="desc">
-        <strong>Students Arrive at Odle</strong>
-        <span class="sub">Dressy casual attire required</span>
+  <!-- ── LIVE STATUS TAB ── -->
+  <div class="tab-content active" id="live">
+    <div class="tracker" id="tracker">
+      <div class="tracker-label">Live Status</div>
+      <div class="tracker-grid" id="tracker-grid">
+        <div class="tracker-block current">
+          <div class="tracker-tag">Now</div>
+          <div class="tracker-event-name" id="now-name">—</div>
+          <div class="tracker-event-time" id="now-time"></div>
+        </div>
+        <div class="tracker-block">
+          <div class="tracker-tag">Up Next</div>
+          <div class="tracker-event-name" id="next-name">—</div>
+          <div class="tracker-event-time" id="next-time"></div>
+        </div>
       </div>
-    </div>
-    <div class="event">
-      <span class="time">7:00 AM</span>
-      <div class="desc"><strong>Load Buses</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">7:30 AM</span>
-      <div class="desc"><strong>Depart Odle</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">11:00 AM</span>
-      <div class="desc">
-        <strong>Rest Stop</strong>
-        <span class="sub">Schrag Rest Area WB I-90 · Ritzville, WA 99169</span>
-      </div>
-    </div>
-    <div class="event">
-      <span class="time">1:00 PM</span>
-      <div class="desc">
-        <strong>Arrive at Whitworth University</strong>
-        <span class="sub">Lunch provided</span>
-      </div>
-    </div>
-    <div class="event">
-      <span class="time">2:30 – 4:30 PM</span>
-      <div class="desc"><strong>Clinic at University</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">5:20 PM</span>
-      <div class="desc">
-        <strong>Dinner</strong>
-        <span class="sub">Golden Corral</span>
-      </div>
-    </div>
-    <div class="event">
-      <span class="time">7:30 PM</span>
-      <div class="desc">
-        <strong>Ghibli Concert</strong>
-        <span class="sub">Spokane Symphony</span>
-      </div>
-    </div>
-    <div class="event">
-      <span class="time">9:45 PM</span>
-      <div class="desc">
-        <strong>Arrive at Hotel</strong>
-        <span class="sub">801 N Division St, Spokane, WA 99202</span>
-      </div>
-    </div>
-    <div class="event">
-      <span class="time">10:00 PM</span>
-      <div class="desc"><strong>Room Check</strong></div>
+      <div class="tracker-clock">Current time: <span id="live-clock"></span></div>
     </div>
   </div>
 
-  <!-- ── SATURDAY ── -->
-  <div class="day">
-    <div class="day-header">
-      <span class="day-label">Saturday</span>
-      <span class="day-date">May 16</span>
-    </div>
+  <!-- ── FRIDAY TAB ── -->
+  <div class="tab-content" id="friday">
+    <div class="day">
+      <div class="day-header">
+        <span class="day-label">Friday</span>
+        <span class="day-date">May 15</span>
+      </div>
 
-    <div class="event">
-      <span class="time">8:00 AM</span>
-      <div class="desc"><strong>Hotel Breakfast</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">8:50 AM</span>
-      <div class="desc"><strong>Load Buses</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">10:00 AM</span>
-      <div class="desc">
-        <strong>Arrive at Performance Space</strong>
-        <span class="sub">Coeur d'Alene Senior High School · 5530 N Fourth St, Coeur d'Alene, ID 83815</span>
+      <div class="event">
+        <span class="time">6:45 AM</span>
+        <div class="desc">
+          <strong>Students Arrive at Odle</strong>
+          <span class="sub">Dressy casual attire required</span>
+        </div>
       </div>
-    </div>
-    <div class="event">
-      <span class="time">10:30 AM</span>
-      <div class="desc">
-        <strong>Watch: Vancouver School of Arts and Academics</strong>
+      <div class="event">
+        <span class="time">7:00 AM</span>
+        <div class="desc"><strong>Load Buses</strong></div>
       </div>
-    </div>
-    <div class="event">
-      <span class="time">12:10 PM</span>
-      <div class="desc"><strong>Phil Performs 🎻</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">1:00 PM</span>
-      <div class="desc">
-        <strong>Depart for Lunch</strong>
-        <span class="sub">Subway · lunch on bus</span>
+      <div class="event">
+        <span class="time">7:30 AM</span>
+        <div class="desc"><strong>Depart Odle</strong></div>
       </div>
-    </div>
-    <div class="event">
-      <span class="time">2:00 PM</span>
-      <div class="desc"><strong>Arrive at Silverwood</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">4:15 PM</span>
-      <div class="desc">
-        <strong>Dinner at Silverwood</strong>
+      <div class="event">
+        <span class="time">11:00 AM</span>
+        <div class="desc">
+          <strong>Rest Stop</strong>
+          <span class="sub">Schrag Rest Area WB I-90 · Ritzville, WA 99169</span>
+        </div>
       </div>
-    </div>
-    <div class="event">
-      <span class="time">5:00 PM</span>
-      <div class="desc"><strong>Festival Award Ceremony</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">6:00 PM</span>
-      <div class="desc"><strong>Depart Silverwood</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">7:00 PM</span>
-      <div class="desc">
-        <strong>Arrive at Hotel</strong>
-        <span class="sub">801 N Division St, Spokane, WA 99202</span>
+      <div class="event">
+        <span class="time">1:00 PM</span>
+        <div class="desc">
+          <strong>Arrive at Whitworth University</strong>
+          <span class="sub">Lunch provided</span>
+        </div>
       </div>
-    </div>
-    <div class="event">
-      <span class="time">8:00 PM</span>
-      <div class="desc"><strong>Late Night Pizza</strong></div>
+      <div class="event">
+        <span class="time">2:30 – 4:30 PM</span>
+        <div class="desc"><strong>Clinic at University</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">5:20 PM</span>
+        <div class="desc">
+          <strong>Dinner</strong>
+          <span class="sub">Golden Corral</span>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">7:30 PM</span>
+        <div class="desc">
+          <strong>Ghibli Concert</strong>
+          <span class="sub">Spokane Symphony</span>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">9:45 PM</span>
+        <div class="desc">
+          <strong>Arrive at Hotel</strong>
+          <span class="sub">801 N Division St, Spokane, WA 99202</span>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">10:00 PM</span>
+        <div class="desc"><strong>Room Check</strong></div>
+      </div>
     </div>
   </div>
 
-  <!-- ── SUNDAY ── -->
-  <div class="day">
-    <div class="day-header">
-      <span class="day-label">Sunday</span>
-      <span class="day-date">May 17</span>
-    </div>
+  <!-- ── SATURDAY TAB ── -->
+  <div class="tab-content" id="saturday">
+    <div class="day">
+      <div class="day-header">
+        <span class="day-label">Saturday</span>
+        <span class="day-date">May 16</span>
+      </div>
 
-    <div class="event">
-      <span class="time">8:00 AM</span>
-      <div class="desc"><strong>Hotel Breakfast</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">8:45 AM</span>
-      <div class="desc"><strong>Bring Down Luggage · Final Room Check</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">9:00 AM</span>
-      <div class="desc"><strong>Depart for Leavenworth</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">12:30 PM</span>
-      <div class="desc">
-        <strong>Arrive in Leavenworth</strong>
-        <span class="sub">Students purchase lunch · bring $20+ or debit card</span>
+      <div class="event">
+        <span class="time">8:00 AM</span>
+        <div class="desc"><strong>Hotel Breakfast</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">8:50 AM</span>
+        <div class="desc"><strong>Load Buses</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">10:00 AM</span>
+        <div class="desc">
+          <strong>Arrive at Performance Space</strong>
+          <span class="sub">Coeur d'Alene Senior High School · 5530 N Fourth St, Coeur d'Alene, ID 83815</span>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">10:30 AM</span>
+        <div class="desc">
+          <strong>Watch: Vancouver School of Arts and Academics</strong>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">12:10 PM</span>
+        <div class="desc"><strong>Phil Performs 🎻</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">1:00 PM</span>
+        <div class="desc">
+          <strong>Depart for Lunch</strong>
+          <span class="sub">Subway · lunch on bus</span>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">2:00 PM</span>
+        <div class="desc"><strong>Arrive at Silverwood</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">4:15 PM</span>
+        <div class="desc">
+          <strong>Dinner at Silverwood</strong>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">5:00 PM</span>
+        <div class="desc"><strong>Festival Award Ceremony</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">6:00 PM</span>
+        <div class="desc"><strong>Depart Silverwood</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">7:00 PM</span>
+        <div class="desc">
+          <strong>Arrive at Hotel</strong>
+          <span class="sub">801 N Division St, Spokane, WA 99202</span>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">8:00 PM</span>
+        <div class="desc"><strong>Late Night Pizza</strong></div>
       </div>
     </div>
-    <div class="event">
-      <span class="time">2:00 PM</span>
-      <div class="desc"><strong>Meet at Chaperone Designated Spot</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">2:15 PM</span>
-      <div class="desc"><strong>Depart for Odle</strong></div>
-    </div>
-    <div class="event">
-      <span class="time">4:30 – 5:00 PM</span>
-      <div class="desc">
-        <strong>Arrive at Odle</strong>
-        <span class="sub">ETA communicated to families via TalkingPoints</span>
+  </div>
+
+  <!-- ── SUNDAY TAB ── -->
+  <div class="tab-content" id="sunday">
+    <div class="day">
+      <div class="day-header">
+        <span class="day-label">Sunday</span>
+        <span class="day-date">May 17</span>
+      </div>
+
+      <div class="event">
+        <span class="time">8:00 AM</span>
+        <div class="desc"><strong>Hotel Breakfast</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">8:45 AM</span>
+        <div class="desc"><strong>Bring Down Luggage · Final Room Check</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">9:00 AM</span>
+        <div class="desc"><strong>Depart for Leavenworth</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">12:30 PM</span>
+        <div class="desc">
+          <strong>Arrive in Leavenworth</strong>
+          <span class="sub">Students purchase lunch · bring $20+ or debit card</span>
+        </div>
+      </div>
+      <div class="event">
+        <span class="time">2:00 PM</span>
+        <div class="desc"><strong>Meet at Chaperone Designated Spot</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">2:15 PM</span>
+        <div class="desc"><strong>Depart for Odle</strong></div>
+      </div>
+      <div class="event">
+        <span class="time">4:30 – 5:00 PM</span>
+        <div class="desc">
+          <strong>Arrive at Odle</strong>
+          <span class="sub">ETA communicated to families via TalkingPoints</span>
+        </div>
       </div>
     </div>
   </div>
@@ -527,7 +577,6 @@
   const themeToggle = document.getElementById('theme-toggle');
   const htmlElement = document.documentElement;
 
-  // Set default to dark mode
   if (!localStorage.getItem('theme')) {
     localStorage.setItem('theme', 'dark');
   }
@@ -543,6 +592,22 @@
     const theme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
     localStorage.setItem('theme', theme);
     themeToggle.textContent = theme === 'dark' ? '🌙 Dark' : '☀️ Light';
+  });
+
+  // Tab navigation
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+      
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      
+      btn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    });
   });
 
   // All events: [month (1-based), day, hour24, minute, label, sublabel?]
@@ -591,12 +656,10 @@
   function update() {
     const now = new Date();
 
-    // Clock
     document.getElementById('live-clock').textContent =
       now.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'}) +
       ' · ' + fmt12(now);
 
-    // Find current event (last one whose start <= now)
     let curIdx = -1;
     for (let i = 0; i < EVENTS.length; i++) {
       if (toDate(EVENTS[i]) <= now) curIdx = i;
