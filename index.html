@@ -434,6 +434,18 @@
   .badge-blue   { background: var(--blue-dim); color: var(--blue); }
   .badge-purple { background: var(--purple-dim); color: var(--purple); }
 
+  /* ─── Ride tags ─── */
+  .ride-tag {
+    font-size: 11px;
+    font-family: 'Geist Mono', monospace;
+    color: var(--text-muted);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
   /* ─── Timeline divider ─── */
   .tl-divider {
     display: flex;
@@ -700,16 +712,46 @@
           <span class="event-time">2:00 PM</span>
           <div class="event-body">
             <div class="event-title">Arrive at Silverwood <span class="event-badge" style="background:var(--amber-dim);color:var(--amber)">Park</span></div>
+            <div class="event-sub">Enter in chaperone groups · walk to Pavilion 5</div>
           </div>
         </div>
         <div class="event-row">
-          <span class="event-time">4:15 PM</span>
-          <div class="event-body"><div class="event-title">Dinner at Silverwood</div></div>
+          <span class="event-time">3:30 PM</span>
+          <div class="event-body">
+            <div class="event-title">📸 Photo check-in</div>
+            <div class="event-sub">Take a photo with 2 others and send to your chaperone · set a timer now!</div>
+          </div>
         </div>
         <div class="event-row">
-          <span class="event-time">5:00 PM</span>
-          <div class="event-body"><div class="event-title">Festival award ceremony</div></div>
+          <span class="event-time">4:30 PM</span>
+          <div class="event-body">
+            <div class="event-title">Dinner &amp; awards ceremony</div>
+            <div class="event-sub">Pavilion 5</div>
+          </div>
         </div>
+
+        <!-- Rides info card -->
+        <div class="event-row" style="align-items:start; padding: 12px;">
+          <span class="event-time" style="padding-top:2px">Rides</span>
+          <div class="event-body">
+            <div class="event-title" style="margin-bottom:8px">Approved rides only</div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px">
+              <span class="ride-tag">Antique Cars</span>
+              <span class="ride-tag">Butterflyer</span>
+              <span class="ride-tag">Carousel</span>
+              <span class="ride-tag">Ferris Wheel</span>
+              <span class="ride-tag">Flying Elephants</span>
+              <span class="ride-tag">Frog Hopper</span>
+              <span class="ride-tag">Paratrooper</span>
+              <span class="ride-tag">Roaring Creek Log Flume</span>
+              <span class="ride-tag">Scrambler</span>
+              <span class="ride-tag">Steam Engine Train</span>
+              <span class="ride-tag">Tilt-A-Whirl</span>
+            </div>
+            <div class="event-sub" style="color:var(--amber); font-family:'Geist',sans-serif;">⚠ No "High Intensity" rides</div>
+          </div>
+        </div>
+
         <div class="event-row">
           <span class="event-time">6:00 PM</span>
           <div class="event-body"><div class="event-title">Depart Silverwood</div></div>
